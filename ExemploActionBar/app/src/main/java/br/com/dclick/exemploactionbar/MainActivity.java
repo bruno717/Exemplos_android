@@ -1,27 +1,29 @@
 package br.com.dclick.exemploactionbar;
 
-import android.app.ActionBar;
+
+import android.annotation.TargetApi;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
-import android.sax.StartElementListener;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.SearchView;
 import android.widget.Toast;
 
 
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ActionBar actionBar = getActionBar();
+        ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.background));
 
@@ -46,9 +48,9 @@ public class MainActivity extends FragmentActivity {
 
         if (savedInstanceState != null) {
             int indiceTab = savedInstanceState.getInt("indiceTab");
-            getActionBar().setSelectedNavigationItem(indiceTab);
+            getSupportActionBar().setSelectedNavigationItem(indiceTab);
         } else {
-            getActionBar().setSelectedNavigationItem(0);
+            getSupportActionBar().setSelectedNavigationItem(0);
         }
     }
 
@@ -62,7 +64,7 @@ public class MainActivity extends FragmentActivity {
 
         //Método é chamado quando tab é selecionada e mostra tab que esta com o foco atual
         @Override
-        public void onTabSelected(ActionBar.Tab tab, android.app.FragmentTransaction ft) {
+        public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
             FragmentTransaction fts = getSupportFragmentManager().beginTransaction();
             fts.replace(R.id.fragmentContainer, frag);
             fts.commit();
@@ -70,8 +72,8 @@ public class MainActivity extends FragmentActivity {
 
         //Método é chamado quando nova tab é selecionada e ele mostra a tab na qual perdeu o foco
         @Override
-        public void onTabUnselected(ActionBar.Tab tab, android.app.FragmentTransaction ft) {
-            getActionBar().setTitle(tab.getText());
+        public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
+            getSupportActionBar().setTitle(tab.getText());
 
             FragmentTransaction fts = getSupportFragmentManager().beginTransaction();
             fts.remove(frag);
@@ -80,7 +82,7 @@ public class MainActivity extends FragmentActivity {
 
         //Metodo é chamado quando tab já está selecionada e é clicada novamente
         @Override
-        public void onTabReselected(ActionBar.Tab tab, android.app.FragmentTransaction ft) {
+        public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
             Log.i("Script", "onTabReselected()");
         }
     }
@@ -91,25 +93,22 @@ public class MainActivity extends FragmentActivity {
 
        /* SearchView sv = new SearchView(this);
         sv.setOnQueryTextListener(new SearchFiltro());
-
         MenuItem menuItem1 = menu.add(0, 0, 0, "Item 1");
         menuItem1.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         menuItem1.setActionView(sv);
-
         MenuItem menuItem2 = menu.add(0, 1, 1, "Item 2");
         menuItem2.setIcon(R.drawable.ic_launcher);
         menuItem2.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
-
         MenuItem menuItem3 = menu.add(0, 2, 2, "Item 3");
         menuItem3.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
-
         MenuItem menuItem4 = menu.add(0, 3, 3, "Item 4");
-        menuItem4.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);*/
+        menuItem4.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER); */
 
         getMenuInflater().inflate(R.menu.menu, menu);
 
-        SearchView sv = (SearchView) menu.findItem(R.id.item1).getActionView();
-        sv.setOnQueryTextListener(new SearchFiltro());
+        //Não suportado abaixo da API 11
+        //SearchView sv = (SearchView) menu.findItem(R.id.item1).getActionView();
+        //sv.setOnQueryTextListener(new SearchFiltro());
 
         return true;
     }
@@ -132,6 +131,33 @@ public class MainActivity extends FragmentActivity {
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Toast.makeText(this, "Logo Botão ", Toast.LENGTH_SHORT).show();
+                //Retira todas as atividades da pilha e retorna para activity especificada
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                break;
+            case R.id.item1:
+                Toast.makeText(this, "Item " + item.getItemId() + 1, Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.item2:
+
+               // Toast.makeText(this, "Item " + item.getItemId() + 1, Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.item3:
+                Toast.makeText(this, "Item " + item.getItemId() + 1, Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.item4:
+                Toast.makeText(this, "Item " + item.getItemId() + 1, Toast.LENGTH_SHORT).show();
+                break;
+        }
+        return true;
+    }
+
+   /* @Override
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
 
         switch (item.getItemId()) {
@@ -156,13 +182,12 @@ public class MainActivity extends FragmentActivity {
                 break;
         }
         return true;
-    }
+    }*/
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        outState.putInt("indiceTab", getActionBar().getSelectedNavigationIndex());
+        outState.putInt("indiceTab", getSupportActionBar().getSelectedNavigationIndex());
     }
 }
-

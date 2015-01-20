@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "br.com.dclick.exemploactionbar"
-        minSdkVersion 11
+        minSdkVersion 8
         targetSdkVersion 21
         versionCode 1
         versionName "1.0"
@@ -17,6 +17,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+}
+
+repositories {
+    mavenCentral()
 }
 
 dependencies {

@@ -5,12 +5,11 @@
         android:id="@+id/item1"
         android:title="Item 1"
         android:showAsAction="always"
-        android:actionViewClass="android.widget.SearchView"/>
+        android:actionViewClass="android.support.v7.widget.SearchView" />
 
     <item
         android:id="@+id/item2"
-        android:icon="@drawable/ic_launcher"
-        android:title="Item 2"
+        android:icon="@android:drawable/ic_menu_rotate"
         android:showAsAction="ifRoom|withText" />
 
     <item
@@ -22,6 +21,5 @@
         android:id="@+id/item4"
         android:title="Item 4"
         android:showAsAction="never" />
-
 
 </menu>
