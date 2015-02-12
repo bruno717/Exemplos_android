@@ -1,25 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/item1"
         android:title="Item 1"
-        android:showAsAction="always"
+        custom:showAsAction="always"
         android:actionViewClass="android.support.v7.widget.SearchView" />
 
     <item
         android:id="@+id/item2"
+        android:title="gf"
         android:icon="@android:drawable/ic_menu_rotate"
-        android:showAsAction="ifRoom|withText" />
+        custom:showAsAction="always" />
 
     <item
         android:id="@+id/item3"
         android:title="Item 3"
-        android:showAsAction="never" />
+        custom:showAsAction="ifRoom|withText" />
 
     <item
         android:id="@+id/item4"
         android:title="Item 4"
-        android:showAsAction="never" />
+        custom:showAsAction="ifRoom|withText" />
 
 </menu>
