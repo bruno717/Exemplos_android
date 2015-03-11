@@ -1,26 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
+<<<<<<< HEAD
     xmlns:app="http://schemas.android.com/apk/res-auto">
+=======
+    xmlns:custom="http://schemas.android.com/apk/res-auto">
+>>>>>>> 7ad0a6fe24e0f03d0259132a6ba6ed0c2b059bc3
 
     <item
         android:id="@+id/item1"
         android:title="Item 1"
+<<<<<<< HEAD
         app:showAsAction="always"
+=======
+        custom:showAsAction="always"
+>>>>>>> 7ad0a6fe24e0f03d0259132a6ba6ed0c2b059bc3
         android:actionViewClass="android.support.v7.widget.SearchView" />
 
     <item
         android:id="@+id/item2"
+        android:title="gf"
         android:icon="@android:drawable/ic_menu_rotate"
+<<<<<<< HEAD
         app:showAsAction="ifRoom|withText" />
+=======
+        custom:showAsAction="always" />
+>>>>>>> 7ad0a6fe24e0f03d0259132a6ba6ed0c2b059bc3
 
     <item
         android:id="@+id/item3"
         android:title="Item 3"
+<<<<<<< HEAD
         app:showAsAction="never" />
+=======
+        custom:showAsAction="ifRoom|withText" />
+>>>>>>> 7ad0a6fe24e0f03d0259132a6ba6ed0c2b059bc3
 
     <item
         android:id="@+id/item4"
         android:title="Item 4"
+<<<<<<< HEAD
         app:showAsAction="never" />
+=======
+        custom:showAsAction="ifRoom|withText" />
+>>>>>>> 7ad0a6fe24e0f03d0259132a6ba6ed0c2b059bc3
 
 </menu>

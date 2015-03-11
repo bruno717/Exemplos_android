@@ -28,7 +28,7 @@ public class MainActivity extends ActionBarActivity {
         //TABS
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
-        ActionBar.Tab tab1 = actionBar.newTab();
+        /*ActionBar.Tab tab1 = actionBar.newTab();
         tab1.setText("Tab 1");
         tab1.setIcon(R.drawable.ic_launcher);
         tab1.setTabListener(new NavegacaoTabs(new Fragment1()));
@@ -49,7 +49,7 @@ public class MainActivity extends ActionBarActivity {
             getSupportActionBar().setSelectedNavigationItem(indiceTab);
         } else {
             getSupportActionBar().setSelectedNavigationItem(0);
-        }
+        }*/
     }
 
     private class NavegacaoTabs implements ActionBar.TabListener {
@@ -89,18 +89,18 @@ public class MainActivity extends ActionBarActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
 
-       /* SearchView sv = new SearchView(this);
+        /*SearchView sv = new SearchView(this);
         sv.setOnQueryTextListener(new SearchFiltro());
         MenuItem menuItem1 = menu.add(0, 0, 0, "Item 1");
         menuItem1.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         menuItem1.setActionView(sv);
         MenuItem menuItem2 = menu.add(0, 1, 1, "Item 2");
-        menuItem2.setIcon(R.drawable.ic_launcher);
+        menuItem2.setIcon(android.R.drawable.ic_menu_rotate);//R.drawable.ic_launcher);
         menuItem2.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
         MenuItem menuItem3 = menu.add(0, 2, 2, "Item 3");
         menuItem3.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
         MenuItem menuItem4 = menu.add(0, 3, 3, "Item 4");
-        menuItem4.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER); */
+        menuItem4.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);*/
 
         getMenuInflater().inflate(R.menu.menu, menu);
 
@@ -138,12 +138,12 @@ public class MainActivity extends ActionBarActivity {
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 break;
-            case R.id.item1:
+            /*case R.id.item1:
                 Toast.makeText(this, "Item " + item.getItemId() + 1, Toast.LENGTH_SHORT).show();
-                break;
+                break;*/
             case R.id.item2:
-
-               // Toast.makeText(this, "Item " + item.getItemId() + 1, Toast.LENGTH_SHORT).show();
+               ProgressBarMenu.atualizar(this, item);
+                // Toast.makeText(this, "Item " + item.getItemId() + 1, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.item3:
                 Toast.makeText(this, "Item " + item.getItemId() + 1, Toast.LENGTH_SHORT).show();
@@ -182,10 +182,10 @@ public class MainActivity extends ActionBarActivity {
         return true;
     }*/
 
-    @Override
+   /* @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
         outState.putInt("indiceTab", getSupportActionBar().getSelectedNavigationIndex());
-    }
+    }*/
 }
