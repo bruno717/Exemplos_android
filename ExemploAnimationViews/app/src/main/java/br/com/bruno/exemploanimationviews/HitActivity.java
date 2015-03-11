@@ -5,6 +5,7 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -42,6 +43,7 @@ public class HitActivity extends Activity {
 
             @Override
             public void onAnimationEnd(Animator animation) {
+                Log.i("Script", "onAnimationEnd()");
                 int nextX = randon.nextInt(width);
                 int nextY = randon.nextInt(height);
                 animation1 = ObjectAnimator.ofFloat(button, "x", button.getX(), nextX);
