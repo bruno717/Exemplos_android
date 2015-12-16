@@ -58,14 +58,14 @@ public class CarFragment extends Fragment implements RecyclerViewOnClickListener
 
                 CarAdapter adapter = (CarAdapter) mRecyclerView.getAdapter();
 
-                if (mList.size() == layoutManager.findLastCompletelyVisibleItemPosition() + 1) {
+                /*if (mList.size() == layoutManager.findLastCompletelyVisibleItemPosition() + 1) {
                     // if (mList.size() == max + 1) {
                     List<Car> listAux = ((MainActivity) getActivity()).getSetCarList(10);
 
                     for (int i = 0; i < listAux.size(); i++) {
                         adapter.addListItem(listAux.get(i), mList.size());
                     }
-                }
+                }*/
 
             }
         });
@@ -85,7 +85,7 @@ public class CarFragment extends Fragment implements RecyclerViewOnClickListener
         staggeredGridLayoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS);
         mRecyclerView.setLayoutManager(staggeredGridLayoutManager);*/
 
-        mList = ((MainActivity) getActivity()).getSetCarList(10);
+        mList = ((MainActivity) getActivity()).getSetCarList(20);
         CarAdapter adapter = new CarAdapter(getActivity(), mList);
         //adapter.setRecyclerViewOnClickListenerHack(this);
         mRecyclerView.setAdapter(adapter);
