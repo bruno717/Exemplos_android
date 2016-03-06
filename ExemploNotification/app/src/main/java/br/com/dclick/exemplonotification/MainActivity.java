@@ -65,7 +65,7 @@ public class MainActivity extends Activity {
         //Fazer a notificação
         Notification notification = builder.build();
         //150ms de espera, 300ms de vibração, 150ms de espera, 600ms de vibração
-        //notification.vibrate = new long[]{150, 300, 150, 600};
+        notification.vibrate = new long[]{150, 300, 150, 600};
         //fecha notificação quando clicada
         notification.flags = Notification.FLAG_AUTO_CANCEL;
         //enviar a notificação - //"R.drawable.ic_launcher" é o id da notificação
