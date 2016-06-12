@@ -1,5 +1,6 @@
 package com.example.bruno.exemplorealm.models;
 
+import io.realm.Realm;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
@@ -8,7 +9,7 @@ import io.realm.annotations.PrimaryKey;
  */
 public class Guitar extends RealmObject {
 
-    @PrimaryKey
+    @PrimaryKey()
     private Long id;
     private String name;
     private String color;
@@ -45,4 +46,15 @@ public class Guitar extends RealmObject {
     public void setStrings(String strings) {
         this.strings = strings;
     }*/
+
+    public static Long autoIncrementId(){
+        Long key = 1L;
+        Realm realm = Realm.getDefaultInstance();
+        try {
+            key = realm.where(Guitar.class).max("id").longValue() + 1;
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
+        return key;
+    }
 }

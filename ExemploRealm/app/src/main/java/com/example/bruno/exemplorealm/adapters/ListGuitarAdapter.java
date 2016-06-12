@@ -13,6 +13,7 @@ import com.example.bruno.exemplorealm.models.Guitar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.realm.Realm;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
 
@@ -36,17 +37,37 @@ public class ListGuitarAdapter extends RecyclerView.Adapter<ListGuitarAdapter.Vi
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
 
-        Guitar guitar = mGuitars.get(position);
+
+        final Guitar guitar = myGuitars().get(position);
         holder.mTextViewName.setText(guitar.getName());
-        holder.mTextViewColor.setText(guitar.getColor());
+        holder.mTextViewColor.setText(guitar.getId().toString());
+        holder.mButtonRemove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                Realm.getDefaultInstance().executeTransaction(new Realm.Transaction() {
+                    @Override
+                    public void execute(Realm realm) {
+                        guitar.deleteFromRealm();
+                        notifyItemRemoved(position);
+                    }
+                });
+
+            }
+        });
+
+    }
+
+    private RealmResults<Guitar> myGuitars() {
+        RealmQuery<Guitar> realm = Realm.getDefaultInstance().where(Guitar.class);
+        return realm.findAll();
     }
 
     @Override
     public int getItemCount() {
-        return mGuitars.size();
+        return myGuitars().size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -61,7 +82,6 @@ public class ListGuitarAdapter extends RecyclerView.Adapter<ListGuitarAdapter.Vi
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-
         }
     }
 }

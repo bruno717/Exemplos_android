@@ -40,6 +40,7 @@ public class NewGuitarActivity extends AppCompatActivity {
         mRealm.beginTransaction();
 
         Guitar guitar = mRealm.createObject(Guitar.class);
+        guitar.setId(Guitar.autoIncrementId());
         guitar.setName(mEditTextName.getText().toString());
         guitar.setColor(mEditTextColor.getText().toString());
 
@@ -48,6 +49,7 @@ public class NewGuitarActivity extends AppCompatActivity {
             @Override
             public void onChange(Realm element) {
                 onBackPressed();
+                mRealm.removeAllChangeListeners();
             }
         });
     }
