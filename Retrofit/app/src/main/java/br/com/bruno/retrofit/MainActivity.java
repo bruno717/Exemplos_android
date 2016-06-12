@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
         IStringService service = retrofit.create(IStringService.class);
 
-        /*Call<String> repos = service.getStringService("123456");
+        Call<String> repos = service.getStringService(123456L);
 
         repos.enqueue(new Callback<String>() {
             @Override
@@ -44,9 +44,9 @@ public class MainActivity extends AppCompatActivity {
             public void onFailure(Call<String> call, Throwable t) {
                 Log.i("script", "erro: " + t.getMessage());
             }
-        });*/
+        });
 
-        Call<Cliente> reposTipoConta = service.getCliente();
+        /*Call<Cliente> reposTipoConta = service.getCliente();
 
         reposTipoConta.enqueue(new Callback<Cliente>() {
             @Override
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Log.i("script", "erro: " + t.getLocalizedMessage());
             }
-        });
+        });*/
 
         /*reposTipoConta.enqueue(new Callback<List<TipoConta>>() {
             @Override

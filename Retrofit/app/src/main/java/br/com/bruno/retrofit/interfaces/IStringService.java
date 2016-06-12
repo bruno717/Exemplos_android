@@ -13,7 +13,7 @@ import retrofit2.http.Query;
  */
 public interface IStringService {
     @GET("test")
-    Call<String> getStringService(@Query("telefone") String telefone);
+    Call<String> getStringService(@Query("telefone") Long telefone);
 
     @GET("test/tipo_conta")
     Call<List<TipoConta>> getTipoConta();
