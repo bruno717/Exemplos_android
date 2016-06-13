@@ -2,7 +2,6 @@ package com.example.bruno.exemplorealm;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -36,7 +35,7 @@ public class NewGuitarActivity extends AppCompatActivity {
 
     @OnClick(R.id.button_save)
     public void onClickSave(View v) {
-        
+
         mRealm.beginTransaction();
 
         Guitar guitar = mRealm.createObject(Guitar.class);
