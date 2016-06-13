@@ -44,7 +44,7 @@ public class ListGuitarAdapter extends RecyclerView.Adapter<ListGuitarAdapter.Vi
 
         final Guitar guitar = mGuitars.get(position);
         holder.mTextViewName.setText(guitar.getId().toString() + " " + guitar.getName());
-        holder.mTextViewColor.setText(guitar.getColor());
+        holder.mTextViewColor.setText(guitar.getId().toString());
         holder.mButtonRemove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
