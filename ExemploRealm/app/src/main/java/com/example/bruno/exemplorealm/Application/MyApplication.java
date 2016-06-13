@@ -2,6 +2,8 @@ package com.example.bruno.exemplorealm.application;
 
 import android.app.Application;
 
+import com.example.bruno.exemplorealm.models.MigrationMyData;
+
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
@@ -13,7 +15,10 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        RealmConfiguration realmConfiguration = new RealmConfiguration.Builder(this).build();
+        RealmConfiguration realmConfiguration = new RealmConfiguration.Builder(this)
+                .schemaVersion(MigrationMyData.VERSION)
+                .migration(new MigrationMyData())
+                .build();
         Realm.setDefaultConfiguration(realmConfiguration);
     }
 }

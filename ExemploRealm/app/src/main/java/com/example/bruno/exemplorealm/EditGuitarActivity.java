@@ -16,7 +16,9 @@ import io.realm.RealmChangeListener;
 /**
  * Created by bruno.oliveira on 6/10/16.
  */
-public class NewGuitarActivity extends AppCompatActivity {
+public class EditGuitarActivity extends AppCompatActivity {
+
+    public static final String INTENT_KEY_EDIT_ID = "INTENT_KEY_EDIT_ID";
 
     @BindView(R.id.edittext_name)
     EditText mEditTextName;
@@ -24,6 +26,7 @@ public class NewGuitarActivity extends AppCompatActivity {
     EditText mEditTextColor;
 
     private Realm mRealm = Realm.getDefaultInstance();
+    private Guitar mGuitar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,19 +34,22 @@ public class NewGuitarActivity extends AppCompatActivity {
         setContentView(R.layout.activity_new_guitar);
         ButterKnife.bind(this);
 
+        Long id = getIntent().getLongExtra(INTENT_KEY_EDIT_ID, 0L);
+        Realm realm = Realm.getDefaultInstance();
+        mGuitar = realm.where(Guitar.class).equalTo("id", id).findFirst();
+        mEditTextName.setText(mGuitar.getName());
+        mEditTextColor.setText(mGuitar.getColor());
+
     }
 
     @OnClick(R.id.button_save)
-    public void onClickSave(View v) {
+    public void onClickEdit(View v) {
 
         mRealm.beginTransaction();
-
-        Guitar guitar = mRealm.createObject(Guitar.class);
-        guitar.setId(Guitar.autoIncrementId());
-        guitar.setName(mEditTextName.getText().toString());
-        guitar.setColor(mEditTextColor.getText().toString());
-
+        mGuitar.setName(mEditTextName.getText().toString());
+        mGuitar.setColor(mEditTextColor.getText().toString());
         mRealm.commitTransaction();
+
         mRealm.addChangeListener(new RealmChangeListener<Realm>() {
             @Override
             public void onChange(Realm element) {

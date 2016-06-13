@@ -24,6 +24,10 @@
             android:name=".NewGuitarActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".EditGuitarActivity"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

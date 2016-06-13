@@ -12,7 +12,6 @@
     android:paddingStart="16dp"
     android:paddingTop="8dp">
 
-
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -43,5 +42,12 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="Excluir" />
+
+    <Button
+        android:id="@+id/button_edit"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Editar" />
 
 </LinearLayout>
